@@ -1,0 +1,70 @@
+= content_for 'content-header' do
+  | 記事
+
+- breadcrumb :admin_articles
+
+.box.box-primary
+  .box-header
+    h3.box-title 記事一覧
+    .box-tools
+      .ul.list-inline
+        li
+          = form_with model: @search_articles_form, scope: :q, url: admin_articles_path, method: :get, html: { class: 'form-inline' } do |f|
+            => f.select :category_id, Category.pluck(:name, :id) , { include_blank: true }, class: 'form-control'
+            .input-group
+              = f.search_field :title, class: 'form-control'
+              span.input-group-btn
+                = f.submit '検索', class: %w[btn btn-default btn-flat]
+        - if policy(Article).new?
+          li
+          .pull-right
+            = link_to '新規作成', new_admin_article_path, class: %w[btn btn-primary]
+
+  .box-body.table-responsive.no-padding
+    table.table.table-hover
+      thead
+        tr
+          th = Article.human_attribute_name(:id)
+          th = Article.human_attribute_name(:title)
+          th = Article.human_attribute_name(:category)
+          th = Article.human_attribute_name(:tag)
+          th = Article.human_attribute_name(:author)
+          th = Article.human_attribute_name(:published_at)
+      tbody
+        - @articles.each do |article|
+          tr
+            td = article.id
+            td
+              div = article.title
+              div
+                - if policy(article).edit?
+                  => link_to edit_admin_article_path(article.uuid), class: %w[btn btn-default btn-xs btn-flat]
+                    i.fa.fa-edit
+                    '
+                    | 編集
+                => link_to admin_article_preview_path(article.uuid), class: %w[btn btn-default btn-xs btn-flat], target: '_blank'
+                  i.fa.fa-eye
+                  '
+                  | プレビュー
+                - if policy(article).destroy?
+                  => link_to admin_article_path(article.uuid), class: %w[btn btn-link btn-xs btn-flat], method: :delete, data: { confirm: "#{article.title}を削除してもよろしいですか？" } do
+                    i.fa.fa-trash
+                    '
+                    | 削除
+            td = article.category_name
+            td
+              - article.tags.each do |tag|
+                span.label.label-info
+                  = tag.name
+                '
+            td = article.author_name
+            td
+              div
+                - if article.published?
+                  span.label.label-success = article.state_i18n
+                - else
+                  span.label.label-warning = article.state_i18n
+              div = article.published_at? ? l(article.published_at) : '-'
+  .box-footer
+    .pull-right
+      = paginate(@articles)

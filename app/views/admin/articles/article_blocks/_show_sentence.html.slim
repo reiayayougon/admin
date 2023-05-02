@@ -1,0 +1,13 @@
+.box-body
+  = sanitize(sentence.body)
+.box-footer
+  .pull-right
+    = link_to edit_admin_article_article_block_path(article.uuid, article_block), \
+        class: %w[btn btn-default js-edit-article-block], \
+        data: { \
+          remote: true, \
+          disable: true \
+        } do
+      i.fa.fa-edit
+      '
+      | 編集

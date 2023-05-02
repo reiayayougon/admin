@@ -1,0 +1,8 @@
+ruby:
+  embed = local_assigns[:embed]
+  width = local_assigns[:width] || 853
+  height = local_assigns[:height] || 480
+
+.embed-youtube
+  = content_tag 'iframe', nil, width: width, height: height, src: "https://www.youtube.com/embed/#{embed.identifier}", \
+    frameborder: 0, gesture: 'media', allow: 'encrypted-media', allowfullscreen: true

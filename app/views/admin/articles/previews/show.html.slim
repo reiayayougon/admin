@@ -1,0 +1,8 @@
+- set_meta_tags title: "[Preview]#{@article.title}", og: { image: @article.eye_catch_url(:ogp) }
+
+- content_for 'stylesheets' do
+  - stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.2/gh-fork-ribbon.min.css'
+
+a.github-fork-ribbon[href="" data-ribbon="Preview"]
+
+= render 'shared/article', article: @article

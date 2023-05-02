@@ -1,0 +1,16 @@
+= content_for 'content-header' do
+  | 記事の作成
+
+- breadcrumb :new_admin_article
+
+.box.box-primary
+  .box-header
+    h3.box-title 新規作成
+  = simple_form_for [:admin, @article] do |f|
+    .box-body
+      = f.error_notification
+      = f.input :title
+      = f.input :slug
+      = f.input :description
+    .box-footer
+      = f.button :submit, class: %w[btn btn-primary]

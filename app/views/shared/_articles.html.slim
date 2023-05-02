@@ -1,0 +1,11 @@
+- if pagination?
+  div.d-flex.justify-content-center
+    = paginate articles, theme: 'twitter-bootstrap-4'
+
+.card-columns
+  - articles.each do |article|
+    = render 'shared/article_card', article: article
+
+- if pagination?
+  div.d-flex.justify-content-center
+    = paginate articles, theme: 'twitter-bootstrap-4'

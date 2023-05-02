@@ -1,0 +1,12 @@
+= simple_form_for [:admin, author] do |f|
+  .box-body
+    = f.error_notification
+    = f.input :name
+    = f.input :slug
+    = f.input :description
+    = f.input :avatar, as: :file
+    - if author.avatar.attached?
+      = image_tag author.avatar_url(:icon)
+  .box-footer
+    = f.button :submit, class: %w[btn btn-primary]
+

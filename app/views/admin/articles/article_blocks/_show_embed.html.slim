@@ -1,0 +1,16 @@
+.box-body
+  - if embed.youtube?
+    - if embed.identifier?
+      = render 'shared/embed_youtube', embed: embed, width: 560, height: 315
+
+.box-footer
+  .pull-right
+    = link_to edit_admin_article_article_block_path(article.uuid, article_block), \
+        class: %w[btn btn-default js-edit-article-block], \
+        data: { \
+          remote: true, \
+          disable: true \
+        } do
+      i.fa.fa-edit
+      '
+      | 編集

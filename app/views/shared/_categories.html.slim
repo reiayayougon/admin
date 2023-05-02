@@ -1,0 +1,4 @@
+h3.text-center.mb-5 カテゴリ
+.d-flex.justify-content-between
+  - categories.each do |category|
+    = link_to category.name, category_path(category.slug), class: %w[btn btn-link btn-lg btn-outline-primary]

@@ -1,0 +1,13 @@
+p.login-box-msg Enter password to start your session
+= simple_form_for @user, url: admin_login_password_path do |f|
+  .text-center
+    = image_tag @user.avatar_url(:icon), class: %w[img-thumbnail image-icon]
+    br
+    br
+  = f.input :name, as: :hidden
+  = f.input :password, label: false, placeholder: 'Password'
+  .row
+    .col-xs-4
+      = link_to '戻る', admin_login_identifier_path, class: %w[btn btn-default btn-block btn-flat]
+    .col-xs-offset-4.col-xs-4
+      = f.button :submit, 'ログイン', class: %w[btn btn-primary btn-block btn-flat]

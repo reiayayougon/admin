@@ -1,0 +1,40 @@
+= content_for 'content-header' do
+  | 著者
+
+- breadcrumb :admin_authors
+
+.row
+  .col-md-9
+    .box.box-primary
+      .box-body.table-responsive.no-padding
+        table.table.table-hover
+          thead
+            tr
+              th = Author.human_attribute_name(:id)
+              th
+              th = Author.human_attribute_name(:name)
+              th = Author.human_attribute_name(:slug)
+              th = Author.human_attribute_name(:created_at)
+              th
+              th
+          tbody
+            - @authors.each do |author|
+              tr
+                td = author.id
+                td = image_tag author.avatar_url(:icon), class: 'image-icon-xs'
+                td = author.name
+                td = author.slug
+                td = l(author.created_at)
+                td
+                  = link_to '編集', edit_admin_author_path(author)
+                td
+                  = link_to admin_author_path(author), method: :delete, data: { confirm: "#{author.name}を削除してもよろしいですか？" } do
+                    i.fa.fa-trash
+                    '
+                    | 削除
+
+  .col-md-3
+    .box
+      .box-header
+        h3.box-title 新規作成
+      = render 'form', author: @author

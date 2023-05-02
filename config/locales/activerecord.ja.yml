@@ -1,0 +1,60 @@
+ja:
+  activerecord:
+    models:
+      user: 'ユーザー'
+    attributes:
+      user:
+        id: 'ID'
+        name: '名前'
+        password: 'パスワード'
+        password_confirmation: 'パスワード再入力'
+        role: '役割'
+        created_at: '登録日'
+      invitation:
+        id: 'ID'
+        name: '名前'
+        role: '役割'
+        created_at: '作成日'
+        expires_at: '期限'
+        user_name: '招待者'
+      category:
+        id: 'ID'
+        name: 'カテゴリー名'
+        slug: 'スラッグ'
+        created_at: '作成日'
+      tag:
+        id: 'ID'
+        name: 'タグ名'
+        slug: 'スラッグ'
+        created_at: '作成日'
+      author:
+        id: 'ID'
+        name: '著者名'
+        slug: 'スラッグ'
+        description: 'プロフィール'
+        avatar: 'アバター'
+        created_at: '作成日'
+      article:
+        id: 'ID'
+        title: 'タイトル'
+        slug: 'スラッグ'
+        state: '状態'
+        description: '概要'
+        eye_catch: 'アイキャッチ'
+        category: 'カテゴリー'
+        tag: 'タグ'
+        author: '著者'
+        published_at: '公開日'
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              blank: 'パスワードを入力してください'
+              invalid: 'パスワードに誤りがあります'
+              too_short: 'パスワードは8文字以上入力してください'
+            password_confirmation:
+              blank: 'パスワードを再入力してください'
+              confirmation: 'パスワードが異なります'
+
+

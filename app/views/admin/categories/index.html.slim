@@ -1,0 +1,38 @@
+= content_for 'content-header' do
+  | カテゴリー
+
+- breadcrumb :admin_categories
+
+.row
+  .col-md-9
+    .box.box-primary
+      .box-body.table-responsive.no-padding
+        table.table.table-hover
+          thead
+            tr
+              th = Category.human_attribute_name(:id)
+              th = Category.human_attribute_name(:name)
+              th = Category.human_attribute_name(:slug)
+              th = Category.human_attribute_name(:created_at)
+              th
+              th
+          tbody
+            - @categories.each do |category|
+              tr
+                td = category.id
+                td = category.name
+                td = category.slug
+                td = l(category.created_at)
+                td
+                  = link_to '編集', edit_admin_category_path(category)
+                td
+                  = link_to admin_category_path(category), method: :delete, data: { confirm: "#{category.name}を削除してもよろしいですか？" } do
+                    i.fa.fa-trash
+                    '
+                    | 削除
+
+  .col-md-3
+    .box
+      .box-header
+        h3.box-title 新規作成
+      = render 'form', category: @category

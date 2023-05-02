@@ -1,0 +1,49 @@
+section.box
+  .box-header
+    = article_block.box_header_icon
+    h3.box-title = article_block.box_title
+    .box-tools.pull-right
+      - if article_block != article_blocks.first
+        = link_to admin_article_article_block_swap_level_path(article.uuid, article_block), \
+            class: %w[btn btn-sm btn-default js-swap-level-article-block], \
+            data: { \
+              remote: true, \
+              disable: true, \
+              method: :patch, \
+              params: { article_block: { level: article_block.level - 1 }} \
+            } do
+          i.fa.fa-arrow-up
+      - else
+        button.btn.btn-sm.btn-default.disabled
+          i.fa.fa-arrow-up
+      '
+      - if article_block != article_blocks.last
+        = link_to admin_article_article_block_swap_level_path(article.uuid, article_block), \
+            class: %w[btn btn-sm btn-default js-swap-level-article-block], \
+            data: { \
+              remote: true, \
+              disable: true, \
+              method: :patch, \
+              params: { article_block: { level: article_block.level + 1 } } \
+             } do
+          i.fa.fa-arrow-down
+      - else
+        button.btn.btn-sm.btn-default.disabled
+          i.fa.fa-arrow-down
+      '
+      = link_to admin_article_article_block_path(article.uuid, article_block), \
+          class: %w[btn btn-sm btn-danger js-remove-article-block], \
+          data: { \
+            remote: true, \
+            disable: true, \
+            method: :delete, \
+            } do
+        i.fa.fa-times
+
+  div.js-article-block-content
+    - if article_block.sentence?
+      = render 'admin/articles/article_blocks/show_sentence', article: article, article_block: article_block, sentence: article_block.blockable
+    - if article_block.medium?
+      = render 'admin/articles/article_blocks/show_medium', article: article, article_block: article_block, medium: article_block.blockable
+    - if article_block.embed?
+      = render 'admin/articles/article_blocks/show_embed', article: article, article_block: article_block, embed: article_block.blockable

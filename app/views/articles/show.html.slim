@@ -1,0 +1,4 @@
+- set_meta_tags title: @article.title, description: @article.description, og: { image: @article.eye_catch_url(:ogp) }
+
+- cache @article, expires_in: 10.minutes
+  = render 'shared/article', article: @article

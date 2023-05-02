@@ -1,0 +1,28 @@
+= content_for 'content-header' do
+  | サイトの設定
+
+- breadcrumb :edit_admin_site
+
+.box.box-primary
+  = simple_form_for [:admin, @site], url: admin_site_path do |f|
+    .box-body
+      = f.error_notification
+      = f.input :name
+      = f.input :subtitle
+      = f.input :description, as: :text
+      = f.input :favicon, as: :file, hint: 'PNG (32x32)'
+
+      - if @site.favicon.attached?
+        = image_tag @site.favicon_url('32x32')
+        br
+        br
+
+      = f.input :og_image, as: :file, hint: 'JPEG/PNG (1200x630)'
+
+      - if @site.og_image.attached?
+        = image_tag @site.og_image_url(:ogp), class: 'img-responsive'
+        br
+        br
+
+    .box-footer
+      = f.button :submit, '保存', class: %w[btn btn-primary]

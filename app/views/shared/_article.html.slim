@@ -1,0 +1,51 @@
+.container.article-content
+  h1.title = article.title
+
+  section.published-at
+    time
+      = l(article.published_at? ? article.published_at.to_date : Time.current.to_date, format: '%Y年%-m月%-d日')
+
+  - if article.eye_catch.attached?
+    section.eye_catch
+      = image_tag article.eye_catch_url(:lg), class: 'img-fluid'
+
+  - if article.category.present?
+    section.category
+      h4 Category
+      = link_to article.category.name, category_path(article.category.slug)
+
+  - if article.tags.present?
+    section.tags
+      h4 Tags
+      ul.list-inline
+      - article.tags.each do |tag|
+        li.list-inline-item = link_to tag.name, tag_path(tag.slug)
+
+  article.article
+    == article.body
+
+  - if article.author.present?
+    section.author.my-5
+      .card
+        .card-body
+          .media
+            = image_tag article.author.avatar_url(:media), class: 'mr-3', style: 'width: 64px; height: 64px;'
+            .media-body
+              h5.mt-0 = link_to article.author.name, author_path(article.author.slug)
+              = article.author.description
+
+  section.row.next-article.my-5
+    .col-sm-6
+      - if article.prev_article.present?
+        .card
+          .card-body
+            h6.card-title.text-center 古い記事
+            h6.card-title
+              = link_to article.prev_article.title, article_path(article.prev_article.category_slug, article.prev_article.slug)
+    .col-sm-6
+      - if article.next_article.present?
+        .card
+          .card-body
+            h6.card-title.text-center 新しい記事
+            h6.card-title
+              = link_to article.next_article.title, article_path(article.next_article.category_slug, article.next_article.slug)

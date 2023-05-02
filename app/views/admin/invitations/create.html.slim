@@ -1,0 +1,23 @@
+= content_for 'content-header' do
+  | 招待状の作成
+
+- breadcrumb :new_admin_invitation
+
+.box.box-primary
+  .box-header
+    h3.box-title 招待状を作成しました
+
+  .box-body
+    dl.dl-horizontal
+      dt = Invitation.human_attribute_name(:name)
+      dd = @invitation.name
+
+      dt = Invitation.human_attribute_name(:role)
+      dd = @invitation.role_i18n
+
+    p 以下のURLを招待する方に共有してください
+
+    input.form-control[type="text" readonly value="#{admin_invitation_register_url(@invitation.uuid)}"]
+
+  .box-footer
+    = link_to '戻る', admin_invitations_path, class: %w[btn btn-link]

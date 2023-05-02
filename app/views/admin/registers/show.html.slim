@@ -1,0 +1,10 @@
+p.login-box-msg Register a new membership
+
+= simple_form_for @user, url: admin_invitation_register_path(@invitation.uuid) do |f|
+  = f.input :name, readonly: true
+  = f.input :password, required: true
+  = f.input :password_confirmation, required: true
+  = f.input :avatar, as: :file
+  .row
+    .col-xs-offset-8.col-xs-4
+      = f.button :submit, '登録', class: %w[btn btn-primary btn-block btn-flat]

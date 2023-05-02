@@ -1,0 +1,17 @@
+= content_for 'content-header' do
+  | ユーザーの作成
+
+- breadcrumb :new_admin_user
+
+.box.box-primary
+  = simple_form_for [:admin, @user] do |f|
+    .box-body
+      = f.error_notification
+      = f.input :name
+      = f.input :role, collect: User.roles_i18n.invert
+      = f.input :avatar, as: :file
+      = f.input :password
+      = f.input :password_confirmation
+
+    .box-footer
+      = f.button :submit, class: %w[btn btn-primary]

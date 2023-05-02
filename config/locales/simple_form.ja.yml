@@ -1,0 +1,68 @@
+ja:
+  simple_form:
+    "yes": 'はい'
+    "no": 'いいえ'
+    required:
+      text: 'required'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "エラーがあります。確認してください。"
+    # Examples
+    # labels:
+    #   defaults:
+    #     password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail to sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    # hints:
+    #   defaults:
+    #     username: 'User name to sign in.'
+    #     password: 'No special characters, please.'
+    # include_blanks:
+    #   defaults:
+    #     age: 'Rather not say'
+    # prompts:
+    #   defaults:
+    #     age: 'Select your age'
+    labels:
+      defaults:
+        avatar: 'アバター'
+        name: '名前'
+        role: '役割'
+      site:
+        name: 'サイト名'
+        subtitle: 'サブタイトル'
+        description: '概要'
+        favicon: 'favicon'
+        og_image: 'og:image'
+      category:
+        name: 'カテゴリー名'
+        slug: 'スラッグ'
+      tag:
+        name: 'タグ名'
+        slug: 'スラッグ'
+      author:
+        name: '著者名'
+        slug: 'スラッグ'
+        description: 'プロフィール'
+        avatar: 'アバター'
+      article:
+        title: 'タイトル'
+        slug: 'スラッグ'
+        state: '状態'
+        description: '概要'
+        eye_catch: 'アイキャッチ'
+        category_id: 'カテゴリー'
+        author_id: '著者'
+        tag_ids: 'タグ'
+      medium:
+        media_type: 'メディアタイプ'
+        attachment: 'ファイル'
+      embed:
+        embed_type: '埋め込みタイプ'
+        identifier: 'ID'

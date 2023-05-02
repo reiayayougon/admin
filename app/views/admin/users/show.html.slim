@@ -1,0 +1,36 @@
+= content_for 'content-header' do
+  | ユーザープロフィール
+  small = current_user.name
+
+- breadcrumb :admin_user, @user
+
+.row
+  .col-md-3
+    .box.box-primary
+      .box-body.box-profile
+        = image_tag @user.avatar_url(:icon), class: %w[profile-user-img img-responsive img-circle]
+
+        h3.profile-username.text-center
+          = @user.name
+
+        p.text-muted.text-center
+          = @user.role_i18n
+
+  .col-md-9
+    .nav-tabs-custom
+      ul.nav.nav-tabs
+        li.active
+          a[href="#settings" data-toggle="tab"] 設定
+
+      .tab-content
+        #settings.active.tab-pane
+          = simple_form_for [:admin, @user] do |f|
+            = f.error_notification
+            = f.input :name, readonly: !current_user.admin?
+            - if policy(@user).edit?
+              - if current_user.admin?
+                = f.input :role, collect: User.roles_i18n.invert
+              = f.input :avatar, as: :file
+              = f.input :password
+              = f.input :password_confirmation
+              = f.button :submit, '更新', class: 'btn btn-danger'

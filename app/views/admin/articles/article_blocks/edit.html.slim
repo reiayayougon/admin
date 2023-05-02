@@ -1,0 +1,8 @@
+- if @article_block.sentence?
+  = render 'admin/articles/article_blocks/edit_sentence', article: @article, article_block: @article_block, sentence: @article_block.blockable
+
+- elsif @article_block.medium?
+  = render 'admin/articles/article_blocks/edit_medium', article: @article, article_block: @article_block, medium: @article_block.blockable
+
+- elsif @article_block.embed?
+  = render 'admin/articles/article_blocks/edit_embed', article: @article, article_block: @article_block, embed: @article_block.blockable

@@ -1,0 +1,14 @@
+= simple_form_for medium, \
+    html: { class: 'js-update-article-block' }, \
+    url: admin_article_article_block_path(article.uuid, article_block), \
+    data: { \
+      remote: true, \
+      disable: true \
+    } do |f|
+  .box-body
+    = f.input :media_type, collect: Medium.media_types_i18n.invert, include_blank: false
+    = f.input :attachment, as: :file
+  .box-footer
+    .pull-right
+      => link_to 'キャンセル', '#', class: %w[btn btn-default js-cancel-article-block]
+      => f.button :submit, class: %[btn btn-primary]

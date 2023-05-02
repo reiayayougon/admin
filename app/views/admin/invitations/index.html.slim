@@ -1,0 +1,51 @@
+= content_for 'content-header' do
+  | 招待
+
+- breadcrumb :admin_invitations
+
+.box.box-primary
+  .box-header
+    h3.box-title 招待一覧
+    .pull-right.box-tools
+      - if policy(Invitation).new?
+        = link_to '新規作成', new_admin_invitation_path, class: %w[btn btn-primary btn-sm]
+  .box-body.table-responsive.no-padding
+    table.table.table-hover
+      thead
+        tr
+          th = Invitation.human_attribute_name(:id)
+          th = Invitation.human_attribute_name(:name)
+          th = Invitation.human_attribute_name(:role)
+          th = Invitation.human_attribute_name(:user_name)
+          th = Invitation.human_attribute_name(:created_at)
+          th = Invitation.human_attribute_name(:expires_at)
+          th
+          th
+      tbody
+        - @invitations.each do |invitation|
+          tr
+            td = invitation.id
+            td = invitation.name
+            td = invitation.role_i18n
+            td = invitation.user_name
+            td = l(invitation.created_at)
+            td = l(invitation.expires_at)
+            td
+              - if policy(invitation).create?
+                .modal.fade[id="invitation-url-#{invitation.id}"]
+                  .modal-dialog
+                    .modal-content
+                      .modal-header
+                        h4.modal-title ユーザー招待URL
+                      .modal-body
+                        input.form-control[type="text" readonly value="#{admin_invitation_register_url(invitation.uuid)}"]
+                      .modal-footer
+                        button.btn.btn-default[data-dismiss="modal"] 閉じる
+                a[href="#" data-toggle="modal" data-target="#invitation-url-#{invitation.id}"] URL
+
+            td
+              - if policy(invitation).destroy?
+                = link_to admin_invitation_path(invitation.uuid), method: :delete, data: { confirm: "#{invitation.name}の招待を削除してもよろしいですか？" } do
+                  i.fa.fa-trash
+                  '
+                  | 削除

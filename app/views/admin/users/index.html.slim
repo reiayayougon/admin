@@ -1,0 +1,36 @@
+= content_for 'content-header' do
+  | ユーザー
+
+- breadcrumb :admin_users
+
+.box.box-primary
+  .box-header
+    h3.box-title ユーザー一覧
+    .pull-right.box-tools
+      - if policy(User).new?
+        = link_to '新規作成', new_admin_user_path, class: %w[btn btn-primary btn-sm]
+
+  .box-body.table-responsive.no-padding
+    table.table.table-hover
+      thead
+        tr
+          th = User.human_attribute_name(:id)
+          th
+          th = User.human_attribute_name(:name)
+          th = User.human_attribute_name(:role)
+          th = User.human_attribute_name(:created_at)
+          th
+      tbody
+        - @users.each do |user|
+          tr
+            td = user.id
+            td = image_tag user.avatar_url(:icon), class: 'image-icon-xs'
+            td = link_to user.name, admin_user_path(user)
+            td = user.role_i18n
+            td = l(user.created_at)
+            td
+              - if policy(user).destroy?
+                = link_to admin_user_path(user), method: :delete, data: { confirm: "#{user.name}を削除してもよろしいですか？" } do
+                  i.fa.fa-trash
+                  '
+                  | 削除

@@ -1,0 +1,18 @@
+- set_meta_tags title: @title
+
+- if @category.present?
+  h3.text-center Category
+  h1.text-center.display-3.mb-5 = @category.name
+
+- if @tag.present?
+  h3.text-center Tag
+  h1.text-center.display-3.mb-5 = "##{@tag.name}"
+
+- if @author.present?
+  h3.text-center Author
+  h1.text-center.display-3 = "#{@author.name}"
+  .text-center.mb-5
+    = image_tag @author.avatar_url(:icon), class: 'img-thumbnail'
+
+= render 'shared/articles', articles: @articles
+

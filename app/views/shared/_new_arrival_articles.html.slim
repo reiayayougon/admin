@@ -1,0 +1,4 @@
+h3.text-center.mb-5 新着記事
+.card-deck
+  - articles.each do |article|
+    = render 'shared/article_card', article: article

@@ -1,0 +1,36 @@
+= content_for 'content-header' do
+  | タグ
+
+.row
+  .col-md-9
+    .box.box-primary
+      .box-body.table-responsive.no-padding
+        table.table.table-hover
+          thead
+            tr
+              th = Tag.human_attribute_name(:id)
+              th = Tag.human_attribute_name(:name)
+              th = Tag.human_attribute_name(:slug)
+              th = Tag.human_attribute_name(:created_at)
+              th
+              th
+          tbody
+            - @tags.each do |tag|
+              tr
+                td = tag.id
+                td = tag.name
+                td = tag.slug
+                td = l(tag.created_at)
+                td
+                  = link_to '編集', edit_admin_tag_path(tag)
+                td
+                  = link_to admin_tag_path(tag), method: :delete, data: { confirm: "#{tag.name}を削除してもよろしいですか？" } do
+                    i.fa.fa-trash
+                    '
+                    | 削除
+
+  .col-md-3
+    .box
+      .box-header
+        h3.box-title 新規作成
+      = render 'form', tag: @tag

@@ -1,0 +1,17 @@
+sitename: Blog
+site:
+  name: Blog
+  page_title: Blog
+  page_description: Blog
+  meta:
+    ogp:
+      type: website
+      image_path: https://dummyimage.com/1200x630/888/fff
+session_store:
+  key: _session
+  expire_after: <%= 1.day %>
+sorcery:
+  facebook:
+    key: <%= ENV.fetch('FACEBOOK_APP_ID') { '' } %>
+    secret: <%= ENV.fetch('FACEBOOK_APP_SECRET') { '' } %>
+    callback_url: http://localhost:3000/users/auth/facebook/callback

@@ -1,0 +1,79 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_self
+ */
+
+.jumbotron {
+  background: url('/images/cover.jpg') center / cover;
+  color: white;
+
+  a {
+    color: white;
+  }
+}
+
+.page-content {
+  padding-bottom: 80px;
+}
+
+.article-content {
+  padding-bottom: 60px;
+  max-width: 800px;
+}
+
+.published-at {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.category, .tags, .author {
+  margin-top: 20px;
+}
+
+.article {
+  max-width: 680px;
+  margin: 3rem auto 1rem;
+
+  h1,
+  h2,
+  h3 {
+    margin: 2rem 0 1rem;
+  }
+}
+
+.media-image {
+  position: relative;
+  width: 100%;
+  margin: 2rem auto;
+
+  img {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.embed-youtube {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  margin: 2rem auto;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
