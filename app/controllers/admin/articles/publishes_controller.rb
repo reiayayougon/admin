@@ -4,7 +4,7 @@ class Admin::Articles::PublishesController < ApplicationController
   before_action :set_article
 
   def update
-    @article.published_at = Time.current unless @article.published_at?  #記事が公開されていない場合自動的に現在時刻が公開日として設定。具体的にはpublished_at?が設定されてるかどうかチェック。されていなければTime .currentメソッドで現在時刻を代入
+    @article.published_at = Time.current unless @article.published_at? # 記事が公開されていない場合自動的に現在時刻が公開日として設定。具体的にはpublished_at?が設定されてるかどうかチェック。されていなければTime .currentメソッドで現在時刻を代入
     @article.state = @article.publishable? ? :published : :publish_wait
 
     if @article.valid?
