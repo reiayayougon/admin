@@ -30,5 +30,21 @@ FactoryBot.define do
   factory :article do
     sequence(:title) { |n| "title-#{n}" }
     sequence(:slug) { |n| "slug-#{n}" }
+    category
+  end
+
+  trait :draft do
+    state { :draft }
+  end
+
+  trait :future do
+    published_at { DateTime.now.since(1.hours) }
+    state { :publish_wait }
+  end
+
+  trait :past do
+    published_at { DateTime.now.ago(1.hours) }
+    state { :published }
   end
 end
+
