@@ -18,8 +18,7 @@
 
 FactoryBot.define do
   factory :tag do
-    type { 'Tag' }
-    name { 'テストタグ' }
-    slug { 'test_tag' }
+    sequence(:name) { |n| "test_tag_name_#{n}" }
+    sequence(:slug) { |n| "tesut_tag_slug_#{n}" }
   end
 end

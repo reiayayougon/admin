@@ -7,12 +7,16 @@
   .box-header
     h3.box-title 記事一覧
     .box-tools
+    
       .ul.list-inline
         li
           = form_with model: @search_articles_form, scope: :q, url: admin_articles_path, method: :get, html: { class: 'form-inline' } do |f|
-            => f.select :category_id, Category.pluck(:name, :id) , { include_blank: true }, class: 'form-control'
+            => f.select :category_id, Category.pluck(:name, :id) , { include_blank: 'カテゴリ' }, class: 'form-control'
+            => f.select :author_id, Author.pluck(:name, :id) , { include_blank: '著者' }, class: 'form-control'
+            => f.select :tag_id, Tag.pluck(:name, :id) , { include_blank: 'タグ' }, class: 'form-control'
+            => f.search_field :body, class: 'form-control', placeholder: '記事内容'
             .input-group
-              = f.search_field :title, class: 'form-control'
+              = f.search_field :title, placeholder: 'タイトル', class: 'form-control'
               span.input-group-btn
                 = f.submit '検索', class: %w[btn btn-default btn-flat]
         - if policy(Article).new?

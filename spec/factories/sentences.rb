@@ -10,6 +10,6 @@
 
 FactoryBot.define do
   factory :sentence do
-    
+    sequence(:body) { |n| "test_article_body_#{n}" }
   end
 end
