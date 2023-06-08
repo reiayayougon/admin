@@ -20,6 +20,8 @@ module Blog
       g.assets false
       g.helper false
     end
+
+    config.action_dispatch.rescue_responses["Pundit::NotAuthorizedError"] = :forbidden
   end
 end
 Rails.application.config.active_record.sqlite3.represent_boolean_as_integer = true
