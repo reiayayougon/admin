@@ -34,6 +34,8 @@
             = image_tag @article.eye_catch_url(:thumb), class: 'img-thumbnail'
             br
             br
+          = f.input_field :eyecatch_align, as: :radio_buttons
+          = f.input :eyecatch_width, placeholder: '100'
           = f.input :description, input_html: { class: 'js-autosize' }
           = f.input :author_id, as: :select2, collection: Author.pluck(:name, :id)
           = f.input :category_id, as: :select2, collection: Category.pluck(:name, :id)
