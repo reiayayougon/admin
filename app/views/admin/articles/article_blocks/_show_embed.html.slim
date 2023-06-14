@@ -1,7 +1,9 @@
 .box-body
-  - if embed.youtube?
-    - if embed.identifier?
+  - if embed.identifier?
+    - if embed.youtube?
       = render 'shared/embed_youtube', embed: embed, width: 560, height: 315
+    - if embed.twitter?
+      = render 'shared/embed_twitter', embed: embed
 
 .box-footer
   .pull-right
