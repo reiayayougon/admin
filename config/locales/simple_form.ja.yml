@@ -65,4 +65,4 @@ ja:
         attachment: 'ファイル'
       embed:
         embed_type: '埋め込みタイプ'
-        identifier: 'URL'
+        identifier: 'ID'

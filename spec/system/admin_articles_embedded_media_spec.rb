@@ -17,7 +17,7 @@ RSpec.describe "AdminArticlesEmbeddedMedia", type: :system do
     context 'Youtubeを選択しアップロード' do
       it 'プレビューした記事にYoutubeが埋め込まれている' do
         select 'YouTube', from: 'embed[embed_type]'
-        fill_in 'URL', with: 'https://youtu.be/dZ2dcC4OnQE'
+        fill_in 'ID', with: 'https://youtu.be/dZ2dcC4OnQE'
         page.all('.box-footer')[0].click_button('更新する')
         click_on('プレビュー')
         switch_to_window(windows.last)
@@ -29,12 +29,12 @@ RSpec.describe "AdminArticlesEmbeddedMedia", type: :system do
     context 'Twitterを選択しアップロード' do
       it 'プレビューした記事にTwitterが埋め込まれている' do
         select 'Twitter', from: 'embed[embed_type]'
-        fill_in 'URL', with: 'https://twitter.com/sharenewsjapan1/status/1668773068930416640'
+        fill_in 'ID', with: 'https://twitter.com/sharenewsjapan1/status/1668773068930416640'
         page.all('.box-footer')[0].click_button('更新する')
         click_on('プレビュー')
         switch_to_window(windows.last)
         expect(current_path).to eq(admin_article_preview_path(article.uuid)), '更新した記事を正しくプレビューできていません'
-        sleep 4
+        sleep 5
         expect(page).to have_selector(".twitter-tweet"), 'プレビューにTwitterがアップロードされていません'
       end
     end
