@@ -10,19 +10,36 @@
       = f.input :name
       = f.input :subtitle
       = f.input :description, as: :text
-      = f.input :favicon, as: :file, hint: 'PNG (32x32)'
 
+      = f.input :favicon, as: :file, hint: 'PNG (32x32)'
       - if @site.favicon.attached?
         = image_tag @site.favicon_url('32x32')
         br
         br
+        = link_to '削除', admin_site_attachment_path(@site.favicon.id),
+          method: :delete, class: 'btn btn-danger'
+        br
+        br
 
       = f.input :og_image, as: :file, hint: 'JPEG/PNG (1200x630)'
-
       - if @site.og_image.attached?
         = image_tag @site.og_image_url(:ogp), class: 'img-responsive'
         br
         br
-
+        = link_to '削除', admin_site_attachment_path(@site.og_image.id),
+          method: :delete, class: 'btn btn-danger'
+        br
+        br
+      = f.input :main_images, as: :file, input_html: {multiple: true}, hint: 'JPEG/PNG (1200x400)'
+      
+      - if @site.main_images.attached?
+        .main_images_box
+          - @site.main_images.each do |main_image|
+            .main_image
+              = image_tag main_image.variant(resize:'300x100').processed
+              = link_to '削除', admin_site_attachment_path(main_image.id),
+                method: :delete, class: 'btn btn-danger'
+      
+      
     .box-footer
       = f.button :submit, '保存', class: %w[btn btn-primary]

@@ -20,7 +20,7 @@ class Admin::SitesController < ApplicationController
   private
 
   def site_params
-    params.require(:site).permit(:name, :subtitle, :description, :favicon, :og_image)
+    params.require(:site).permit(:name, :subtitle, :description, :favicon, :og_image, main_images: [])
   end
 
   def set_site
