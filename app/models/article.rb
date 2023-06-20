@@ -69,6 +69,7 @@ class Article < ApplicationRecord
   scope :by_author, ->(author_id) { where(author_id: author_id) }
   scope :by_tag, ->(tag_id) { joins(:article_tags).where(article_tags: { tag_id: tag_id }) }
   scope :body_contain, ->(body) { joins(:sentences).merge(where('sentences.body LIKE ?', "%#{body}%")) }
+  scope :published_at_yesterday, -> { where(published_at: 1.day.ago.all_day) }
 
   def build_body(controller)
     result = ''
